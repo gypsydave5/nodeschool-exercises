@@ -1,0 +1,22 @@
+{
+  "name": "learnyounode",
+  "version": "0.0.0",
+  "description": "My learnyounode solutions",
+  "main": "baby-steps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gypsydave5/learnyounode.git"
+  },
+  "author": "David Wickes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gypsydave5/learnyounode/issues"
+  },
+  "homepage": "https://github.com/gypsydave5/learnyounode",
+  "dependencies": {
+    "strftime": "^0.8.2"
+  }
+}
