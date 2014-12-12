@@ -1,4 +1,4 @@
-// without bl library
+// without bl library -- my solution
 
 var http = require('http');
 var url = process.argv[2];
