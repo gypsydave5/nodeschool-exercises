@@ -1,6 +1,7 @@
-var tr = require('through')(write, end)
+var upcaseStream = require('through')(
+  function write(buffer) {
+    this.queue(buffer.toString().toUpperCase());
+  }
+)
 
-function write(buffer) { this.queue(buffer); }
-function end(buffer) { this.queue(null); }
-
-process.stdin.pipe(tr).pipe(process.stdout);
+process.stdin.pipe(upcaseStream).pipe(process.stdout);
