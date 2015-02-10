@@ -4,6 +4,7 @@
   "description": "Nodeschool streams exercises",
   "main": "beep_boop.js",
   "dependencies": {
+    "split": "^0.3.3",
     "through": "^2.3.6"
   },
   "devDependencies": {},
