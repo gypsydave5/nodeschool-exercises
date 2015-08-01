@@ -32,14 +32,13 @@ var request = Promise.promisify(require('request'));
 
 function requestBody (uri) {
   return request(uri)
-  .spread(function () { return arguments[1] })
-}
+    .spread(function (_, body) { return body });
+};
 
 requestBody('http://localhost:7000')
-.then(function (id) {
-  return requestBody('http://localhost:7001/' + id);
-})
-.then(JSON.parse)
-.then(console.log)
-.catch(console.error)
-.done();
+  .then(function (id) {
+    return requestBody('http://localhost:7001/' + id); })
+  .then(JSON.parse)
+  .then(console.log)
+  .catch(console.error)
+    .done();

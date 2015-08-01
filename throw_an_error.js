@@ -3,13 +3,13 @@ var Promise = require('bluebird');
 
 //Q way
 function parsePromise(json) {
-  var defer = q.defer();
+  var deferred = q.defer();
   try {
     defer.resolve(JSON.parse(json));
-  } catch (e) {
-    defer.reject(e);
+  } catch (error) {
+    defer.reject(error);
   }
-  return defer.promise
+  return deferred.promise
 }
 
 //bluebird way
@@ -17,8 +17,8 @@ function parsePromise (json) {
   return new Promise(function (resolve, reject) {
     try {
       resolve(JSON.parse(json));
-    } catch (e) {
-      reject(e);
+    } catch (error) {
+      reject(error);
     }
   });
 }

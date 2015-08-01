@@ -13,12 +13,10 @@
 var Promise = require('bluebird');
 var request = Promise.promisify(require('request'));
 
-function second () {
-  return arguments[1];
-}
+function iWantYourBody (_, body) { return body };
 
-request({ uri: 'http://localhost:1337', json: true })
-.spread(second)
-.then(console.log)
-.catch(console.error)
-.done();
+request('http://localhost:1337', {json: true })
+    .spread(iWantYourBody)
+    .then(console.log)
+    .catch(console.error)
+	.done();
