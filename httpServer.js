@@ -8,7 +8,7 @@ var server = http.createServer(function (req, res) {
 });
 
 var upcaseStream = through(function write(buffer) {
-  this.queue( buffer.toString().toUpperCase());
+  this.queue(buffer.toString().toUpperCase());
 });
 
 var upcaseStream = through2(function (buffer, _, next) {
