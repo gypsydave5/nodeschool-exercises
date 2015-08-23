@@ -8,6 +8,7 @@
     "request": "^2.60.0",
     "split": "^0.3.3",
     "stream-combiner": "^0.2.2",
+    "tar": "^2.1.1",
     "through": "^2.3.6",
     "through2": "^0.6.5",
     "trumpet": "^1.7.1",
