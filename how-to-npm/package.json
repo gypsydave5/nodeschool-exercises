@@ -1,0 +1,13 @@
+{
+  "name": "@gypsydave5/how-to-npm",
+  "version": "1.1.0",
+  "description": "learning how to npm",
+  "repository": "https://github.com/gypsydave5/nodeschool-exercises",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
