@@ -7,10 +7,16 @@ function askFoo () {
 }
 
 function run (generator) {
-  var genny = generator()
+  var it = generator()
 
-  genny.next().value.then(result => genny.next(result))
-    .catch(err => genny.throw(err))
+  function go (result) {
+    if (result.done) return result.value;
+    return result.value
+      .then(value => go(it.next(value)))
+      .catch(err => go(it.throw(err)))
+  }
+
+  go(it.next());
 
 }
 

@@ -6,7 +6,7 @@ function run (generator) {
   var it = generator(go);
 
   function go (err, result) {
-    if (err)  it.throw(result);
+    if (err) it.throw(result);
     it.next(err);
   }
 
