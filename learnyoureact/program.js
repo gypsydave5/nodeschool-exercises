@@ -12,4 +12,6 @@ app.use('/', function(req, res) {
   res.render('index', '');
 });
 
-app.listen(app.get('port'), function() {});
+app.listen(app.get('port'), function() {
+  console.log('app running on http://localhost:' + app.get('port'));
+});
