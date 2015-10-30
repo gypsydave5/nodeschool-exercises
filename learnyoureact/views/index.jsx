@@ -5,6 +5,7 @@ const React = require('react');
 class TodoBox extends React.Component {
 	render() { return (
 		<div className="todoBox">
+			<h1>Todos</h1>
 			<TodoList />
 			<TodoForm />
 		</div>
