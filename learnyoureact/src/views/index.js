@@ -2,33 +2,6 @@
 
 const React = require('react');
 
-class TodoBox extends React.Component {
-  render() { return (
-    <div className="todoBox">
-      <h1>Todos</h1>
-      <TodoList data={this.props.data} />
-      <TodoForm />
-    </div>
-  );}
-}
-
-class TodoList extends React.Component {
-  render() {
-    const todos = this.props.data.map(item => {
-      <Todo title={item.title} key={item.title}>{item.detail}</Todo>
-    });
-
-    return (
-      <div className = "todoList">
-        <table style={{border: "2px solid black"}}>
-          <tbody>
-            {todos}
-          </tbody>
-        </table>
-      </div>);
-  }
-}
-
 class Todo extends React.Component {
 
   static propTypes = {
@@ -54,6 +27,33 @@ class Todo extends React.Component {
 
   handleChange(e) {
     this.state.checked = e.target.checked;
+  }
+}
+
+class TodoBox extends React.Component {
+  render() { return (
+    <div className="todoBox">
+      <h1>Todos</h1>
+      <TodoList data={this.props.data} />
+      <TodoForm />
+    </div>
+  );}
+}
+
+class TodoList extends React.Component {
+  render() {
+    const todos = this.props.data.map(item => {
+      return <Todo title={item.title} key={item.title}>{item.detail}</Todo>
+    });
+
+    return (
+      <div className = "todoList">
+        <table style={{border: "2px solid black"}}>
+          <tbody>
+            {todos}
+          </tbody>
+        </table>
+      </div>);
   }
 }
 

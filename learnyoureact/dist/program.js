@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var express = require('express');
 var app = express();
@@ -6,7 +6,9 @@ var app = express();
 app.set('port', process.argv[2] || 3000);
 app.set('view engine', 'js');
 app.set('views', __dirname + '/views');
-app.engine('js', require('express-react-views').createEngine());
+app.engine('js', require('express-react-views').createEngine({
+  transformViews: false
+}));
 
 require('node-jsx').install();
 

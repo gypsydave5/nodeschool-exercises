@@ -10,84 +10,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = require('react');
 
-var TodoBox = (function (_React$Component) {
-  _inherits(TodoBox, _React$Component);
-
-  function TodoBox() {
-    _classCallCheck(this, TodoBox);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(TodoBox).apply(this, arguments));
-  }
-
-  _createClass(TodoBox, [{
-    key: 'render',
-    value: function render() {
-      return React.createElement(
-        'div',
-        { className: 'todoBox' },
-        React.createElement(
-          'h1',
-          null,
-          'Todos'
-        ),
-        React.createElement(TodoList, { data: this.props.data }),
-        React.createElement(TodoForm, null)
-      );
-    }
-  }]);
-
-  return TodoBox;
-})(React.Component);
-
-var TodoList = (function (_React$Component2) {
-  _inherits(TodoList, _React$Component2);
-
-  function TodoList() {
-    _classCallCheck(this, TodoList);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(TodoList).apply(this, arguments));
-  }
-
-  _createClass(TodoList, [{
-    key: 'render',
-    value: function render() {
-      var todos = this.props.data.map(function (item) {
-        React.createElement(
-          Todo,
-          { title: item.title, key: item.title },
-          item.detail
-        );
-      });
-
-      return React.createElement(
-        'div',
-        { className: 'todoList' },
-        React.createElement(
-          'table',
-          { style: { border: "2px solid black" } },
-          React.createElement(
-            'tbody',
-            null,
-            todos
-          )
-        )
-      );
-    }
-  }]);
-
-  return TodoList;
-})(React.Component);
-
-var Todo = (function (_React$Component3) {
-  _inherits(Todo, _React$Component3);
+var Todo = (function (_React$Component) {
+  _inherits(Todo, _React$Component);
 
   function Todo() {
     _classCallCheck(this, Todo);
 
-    var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(Todo).call(this));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Todo).call(this));
 
-    _this3.state = { checked: false };
-    return _this3;
+    _this.state = { checked: false };
+    return _this;
   }
 
   _createClass(Todo, [{
@@ -128,6 +60,74 @@ var Todo = (function (_React$Component3) {
 Todo.propTypes = {
   title: React.PropTypes.string.isRequired
 };
+
+var TodoBox = (function (_React$Component2) {
+  _inherits(TodoBox, _React$Component2);
+
+  function TodoBox() {
+    _classCallCheck(this, TodoBox);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(TodoBox).apply(this, arguments));
+  }
+
+  _createClass(TodoBox, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        { className: 'todoBox' },
+        React.createElement(
+          'h1',
+          null,
+          'Todos'
+        ),
+        React.createElement(TodoList, { data: this.props.data }),
+        React.createElement(TodoForm, null)
+      );
+    }
+  }]);
+
+  return TodoBox;
+})(React.Component);
+
+var TodoList = (function (_React$Component3) {
+  _inherits(TodoList, _React$Component3);
+
+  function TodoList() {
+    _classCallCheck(this, TodoList);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(TodoList).apply(this, arguments));
+  }
+
+  _createClass(TodoList, [{
+    key: 'render',
+    value: function render() {
+      var todos = this.props.data.map(function (item) {
+        return React.createElement(
+          Todo,
+          { title: item.title, key: item.title },
+          item.detail
+        );
+      });
+
+      return React.createElement(
+        'div',
+        { className: 'todoList' },
+        React.createElement(
+          'table',
+          { style: { border: "2px solid black" } },
+          React.createElement(
+            'tbody',
+            null,
+            todos
+          )
+        )
+      );
+    }
+  }]);
+
+  return TodoList;
+})(React.Component);
 
 var TodoForm = (function (_React$Component4) {
   _inherits(TodoForm, _React$Component4);
