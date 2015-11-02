@@ -1,0 +1,42 @@
+{
+  "name": "learnyoureact",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/program.js",
+  "dependencies": {
+    "babel": "^6.0.14",
+    "body-parser": "^1.14.1",
+    "express-react-views": "^0.9.0",
+    "express": "^4.13.3",
+    "gulp-babel": "^6.0.0",
+    "gulp-concat": "^2.6.0",
+    "gulp": "^3.9.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "learnyoureact": "^0.9.16",
+    "node-jsx": "^0.13.3",
+    "react-dom": "^0.14.0",
+    "react": "^0.14.0"
+  },
+  "devDependencies": {
+    "babel-plugin-syntax-class-properties": "^6.0.14",
+    "babel-plugin-transform-class-properties": "^6.0.14"
+  },
+  "scripts": {
+    "start": "node dist/program.js 3000",
+    "build": "babel src --out-dir dist --source-maps",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "babel": {
+    "presets": [
+      {
+        "plugins": [
+          "transform-class-properties"
+          ]
+      },
+      "es2015",
+      "react"
+      ]
+  },
+  "author": "",
+  "license": "ISC"
+}
