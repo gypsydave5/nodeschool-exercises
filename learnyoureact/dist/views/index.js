@@ -19,6 +19,7 @@ var Todo = (function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Todo).call(this));
 
     _this.state = { checked: false };
+    _this.handleChange = _this.handleChange.bind(_this);
     return _this;
   }
 
@@ -27,7 +28,7 @@ var Todo = (function (_React$Component) {
     value: function render() {
       return React.createElement(
         'tr',
-        null,
+        { style: this.state.checked ? style.checkedTodo : style.notCheckedTodo },
         React.createElement(
           'td',
           { style: style.tableContent },
@@ -50,7 +51,8 @@ var Todo = (function (_React$Component) {
   }, {
     key: 'handleChange',
     value: function handleChange(e) {
-      this.state.checked = e.target.checked;
+      console.log(e.target);
+      this.setState({ checked: !this.state.checked });
     }
   }]);
 
@@ -153,10 +155,15 @@ var TodoForm = (function (_React$Component4) {
 })(React.Component);
 
 var style = {
+  checkedTodo: {
+    textDecoration: "line-through"
+  },
+  notCheckedTodo: {
+    textDecoration: "none"
+  },
   tableContent: {
     border: "1px solid black"
   }
 };
 
 module.exports = TodoBox;
-//# sourceMappingURL=index.js.map

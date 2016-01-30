@@ -6,16 +6,18 @@
   "dependencies": {
     "babel": "^6.0.14",
     "body-parser": "^1.14.1",
-    "express-react-views": "^0.9.0",
+    "browserify": "^13.0.0",
     "express": "^4.13.3",
+    "express-react-views": "^0.9.0",
+    "gulp": "^3.9.0",
     "gulp-babel": "^6.0.0",
     "gulp-concat": "^2.6.0",
-    "gulp": "^3.9.0",
     "gulp-sourcemaps": "^1.6.0",
     "learnyoureact": "^0.9.16",
     "node-jsx": "^0.13.3",
+    "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react": "^0.14.0"
+    "reactify": "^1.1.1"
   },
   "devDependencies": {
     "babel-plugin-syntax-class-properties": "^6.0.14",
@@ -28,14 +30,14 @@
   },
   "babel": {
     "presets": [
+      "es2015",
+      "react",
       {
         "plugins": [
           "transform-class-properties"
-          ]
-      },
-      "es2015",
-      "react"
-      ]
+        ]
+      }
+    ]
   },
   "author": "",
   "license": "ISC"
