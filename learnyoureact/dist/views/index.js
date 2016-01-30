@@ -50,8 +50,7 @@ var Todo = (function (_React$Component) {
     }
   }, {
     key: 'handleChange',
-    value: function handleChange(e) {
-      console.log(e.target);
+    value: function handleChange() {
       this.setState({ checked: !this.state.checked });
     }
   }]);
@@ -95,16 +94,47 @@ var TodoBox = (function (_React$Component2) {
 var TodoList = (function (_React$Component3) {
   _inherits(TodoList, _React$Component3);
 
-  function TodoList() {
+  function TodoList(props) {
     _classCallCheck(this, TodoList);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(TodoList).apply(this, arguments));
+    var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(TodoList).call(this, props));
+
+    _this3.state = {
+      data: _this3.props.data,
+      titleValue: "",
+      detailValue: ""
+    };
+    _this3.changeTitle = _this3.changeTitle.bind(_this3);
+    _this3.changeDetail = _this3.changeDetail.bind(_this3);
+    _this3.addTodo = _this3.addTodo.bind(_this3);
+    return _this3;
   }
 
   _createClass(TodoList, [{
+    key: 'changeTitle',
+    value: function changeTitle(event) {
+      this.setState({ titleValue: event.target.value });
+    }
+  }, {
+    key: 'changeDetail',
+    value: function changeDetail(event) {
+      this.setState({ detailValue: event.target.value });
+    }
+  }, {
+    key: 'addTodo',
+    value: function addTodo() {
+      this.setState(function (oldState) {
+        return {
+          data: oldState.data.concat([{ title: oldState.titleValue, detail: oldState.detailValue }]),
+          titleValue: '',
+          detailValue: ''
+        };
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var todos = this.props.data.map(function (item) {
+      var todos = this.state.data.map(function (item) {
         return React.createElement(
           Todo,
           { title: item.title, key: item.title },
@@ -115,6 +145,19 @@ var TodoList = (function (_React$Component3) {
       return React.createElement(
         'div',
         { className: 'todoList' },
+        React.createElement(
+          'div',
+          null,
+          'Title:',
+          React.createElement('input', { type: 'text', value: this.state.titleValue, onChange: this.changeTitle }),
+          'Detail:',
+          React.createElement('input', { type: 'text', value: this.state.detailValue, onChange: this.changeDetail }),
+          React.createElement(
+            'button',
+            { onClick: this.addTodo },
+            'Add'
+          )
+        ),
         React.createElement(
           'table',
           { style: { border: "2px solid black" } },

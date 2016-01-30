@@ -42,19 +42,56 @@ class TodoBox extends React.Component {
 }
 
 class TodoList extends React.Component {
-  render() {
-    const todos = this.props.data.map(item => {
+  constructor (props) {
+    super(props);
+    this.state = {
+      data: this.props.data,
+      titleValue: "",
+      detailValue: ""
+    };
+    this.changeTitle = this.changeTitle.bind(this);
+    this.changeDetail = this.changeDetail.bind(this);
+    this.addTodo = this.addTodo.bind(this);
+  }
+
+  changeTitle (event) {
+    this.setState({titleValue: event.target.value})
+  }
+
+  changeDetail (event) {
+    this.setState({detailValue: event.target.value})
+  }
+
+  addTodo () {
+    this.setState(oldState => {
+      return {
+        data: oldState.data.concat([{title: oldState.titleValue, detail: oldState.detailValue}]),
+        titleValue: '',
+        detailValue: ''
+      }
+    })
+  }
+
+  render () {
+    const todos = this.state.data.map(item => {
       return <Todo title={item.title} key={item.title}>{item.detail}</Todo>
     });
 
     return (
-      <div className = "todoList">
+        <div className = "todoList">
+        <div>
+        Title:<input type="text" value={this.state.titleValue} onChange={this.changeTitle} />
+        Detail:<input type="text" value={this.state.detailValue} onChange={this.changeDetail} />
+        <button onClick={this.addTodo}>Add</button>
+        </div>
         <table style={{border: "2px solid black"}}>
-          <tbody>
-            {todos}
-          </tbody>
+        <tbody>
+        {todos}
+      </tbody>
         </table>
-      </div>);
+        </div>
+    );
+
   }
 }
 
