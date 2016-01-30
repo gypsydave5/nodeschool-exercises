@@ -34,7 +34,7 @@ class Todo extends React.Component {
   }
 
   _onDelete() {
-    this.props.onDelete(this.props.title);
+    this.props.onDelete(this.props.id.slice(5));
   }
 }
 
@@ -80,18 +80,21 @@ class TodoList extends React.Component {
     });
   }
 
-  handleDelete (title) {
+  handleDelete (id) {
     this.setState(oldState => {
       return {
-        data: oldState.data.filter(todo => todo.title === title)
+        data: oldState.data.filter((todo, index) => {
+          return Number.parseInt(id) !== index
+        })
       }
     });
   }
 
   render () {
-    const todos = this.state.data.map(item => {
+    const todos = this.state.data.map((item, index) => {
       return <Todo title={item.title}
-                   key={item.title}
+                   key={index}
+                   id={'todo-' + index}
                    onDelete={this.handleDelete}
              >{item.detail}</Todo>
     });

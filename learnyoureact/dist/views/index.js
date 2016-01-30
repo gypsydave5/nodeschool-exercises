@@ -66,7 +66,7 @@ var Todo = (function (_React$Component) {
   }, {
     key: '_onDelete',
     value: function _onDelete() {
-      this.props.onDelete(this.props.title);
+      this.props.onDelete(this.props.id.slice(5));
     }
   }]);
 
@@ -150,11 +150,13 @@ var TodoList = (function (_React$Component3) {
     }
   }, {
     key: 'handleDelete',
-    value: function handleDelete(title) {
+    value: function handleDelete(id) {
       this.setState(function (oldState) {
         return {
-          data: oldState.data.filter(function (todo) {
-            return todo.title === title;
+          data: oldState.data.filter(function (todo, index) {
+            console.log(id);
+            console.log(index);
+            return Number.parseInt(id) !== index;
           })
         };
       });
@@ -164,11 +166,12 @@ var TodoList = (function (_React$Component3) {
     value: function render() {
       var _this4 = this;
 
-      var todos = this.state.data.map(function (item) {
+      var todos = this.state.data.map(function (item, index) {
         return React.createElement(
           Todo,
           { title: item.title,
-            key: item.title,
+            key: index,
+            id: 'todo-' + index,
             onDelete: _this4.handleDelete
           },
           item.detail
