@@ -5,17 +5,20 @@ const React = require('react');
 class Todo extends React.Component {
 
   static propTypes = {
-    title: React.PropTypes.string.isRequired
+    title: React.PropTypes.string.isRequired,
+    onDelete: React.PropTypes.func.isRequired
   }
 
   constructor() {
     super();
     this.state = { checked: false }
     this.handleChange = this.handleChange.bind(this);
+    this._onDelete = this._onDelete.bind(this);
   }
 
   render() { return (
     <tr style={this.state.checked ?  style.checkedTodo : style.notCheckedTodo} >
+      <td style={style.tableContent}><button onClick={this._onDelete}>X</button></td>
       <td style={style.tableContent}>
         <input type="checkbox"
           checked={this.state.checked}
@@ -28,6 +31,10 @@ class Todo extends React.Component {
 
   handleChange() {
     this.setState({ checked: !this.state.checked });
+  }
+
+  _onDelete() {
+    this.props.onDelete(this.props.title);
   }
 }
 
@@ -52,14 +59,15 @@ class TodoList extends React.Component {
     this.changeTitle = this.changeTitle.bind(this);
     this.changeDetail = this.changeDetail.bind(this);
     this.addTodo = this.addTodo.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   changeTitle (event) {
-    this.setState({titleValue: event.target.value})
+    this.setState({titleValue: event.target.value});
   }
 
   changeDetail (event) {
-    this.setState({detailValue: event.target.value})
+    this.setState({detailValue: event.target.value});
   }
 
   addTodo () {
@@ -69,12 +77,23 @@ class TodoList extends React.Component {
         titleValue: '',
         detailValue: ''
       }
-    })
+    });
+  }
+
+  handleDelete (title) {
+    this.setState(oldState => {
+      return {
+        data: oldState.data.filter(todo => todo.title === title)
+      }
+    });
   }
 
   render () {
     const todos = this.state.data.map(item => {
-      return <Todo title={item.title} key={item.title}>{item.detail}</Todo>
+      return <Todo title={item.title}
+                   key={item.title}
+                   onDelete={this.handleDelete}
+             >{item.detail}</Todo>
     });
 
     return (

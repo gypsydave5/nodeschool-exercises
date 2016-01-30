@@ -20,6 +20,7 @@ var Todo = (function (_React$Component) {
 
     _this.state = { checked: false };
     _this.handleChange = _this.handleChange.bind(_this);
+    _this._onDelete = _this._onDelete.bind(_this);
     return _this;
   }
 
@@ -29,6 +30,15 @@ var Todo = (function (_React$Component) {
       return React.createElement(
         'tr',
         { style: this.state.checked ? style.checkedTodo : style.notCheckedTodo },
+        React.createElement(
+          'td',
+          { style: style.tableContent },
+          React.createElement(
+            'button',
+            { onClick: this._onDelete },
+            'X'
+          )
+        ),
         React.createElement(
           'td',
           { style: style.tableContent },
@@ -53,13 +63,19 @@ var Todo = (function (_React$Component) {
     value: function handleChange() {
       this.setState({ checked: !this.state.checked });
     }
+  }, {
+    key: '_onDelete',
+    value: function _onDelete() {
+      this.props.onDelete(this.props.title);
+    }
   }]);
 
   return Todo;
 })(React.Component);
 
 Todo.propTypes = {
-  title: React.PropTypes.string.isRequired
+  title: React.PropTypes.string.isRequired,
+  onDelete: React.PropTypes.func.isRequired
 };
 
 var TodoBox = (function (_React$Component2) {
@@ -107,6 +123,7 @@ var TodoList = (function (_React$Component3) {
     _this3.changeTitle = _this3.changeTitle.bind(_this3);
     _this3.changeDetail = _this3.changeDetail.bind(_this3);
     _this3.addTodo = _this3.addTodo.bind(_this3);
+    _this3.handleDelete = _this3.handleDelete.bind(_this3);
     return _this3;
   }
 
@@ -132,12 +149,28 @@ var TodoList = (function (_React$Component3) {
       });
     }
   }, {
+    key: 'handleDelete',
+    value: function handleDelete(title) {
+      this.setState(function (oldState) {
+        return {
+          data: oldState.data.filter(function (todo) {
+            return todo.title === title;
+          })
+        };
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this4 = this;
+
       var todos = this.state.data.map(function (item) {
         return React.createElement(
           Todo,
-          { title: item.title, key: item.title },
+          { title: item.title,
+            key: item.title,
+            onDelete: _this4.handleDelete
+          },
           item.detail
         );
       });
@@ -210,3 +243,4 @@ var style = {
 };
 
 module.exports = TodoBox;
+//# sourceMappingURL=index.js.map
